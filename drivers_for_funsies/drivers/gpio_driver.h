@@ -29,6 +29,8 @@
 #define GPIO_PORTFP_BASE_ADDR   0x40025000
 #define GPIO_PORTFH_BASE_ADDR   0x4005D000
 
+
+
 typedef enum {
     APB,
     AHB
@@ -81,7 +83,25 @@ typedef struct {
 
 
 void GPIO_Init(GPIO_PORT port, PORT_TYPE type, uint8_t pin, PIN_DIR direction);
-void GPIO_Interrupt_Init();
-void adv_GPIO_init();
 
-#endif /* DRIVERS_GPIO_DRIVER_H_ */
+// DEFAULT AHB PORTS
+uint8_t read_pin    (GPIO_PORT port, uint8_t pin);
+uint8_t read_field  (GPIO_PORT port, uint8_t mask);
+uint8_t read_port   (GPIO_PORT port);
+
+uint8_t read_pin_APB    (GPIO_PORT port, uint8_t pin);
+uint8_t read_field_APB  (GPIO_PORT port, uint8_t mask);
+uint8_t read_port_APB   (GPIO_PORT port);  
+
+// DEFAULT AHB PORTS
+void output_pin     (GPIO_PORT port, uint8_t pin, uint8_t val);
+void output_field   (GPIO_PORT port, uint8_t mask, uint8_t val);
+void output_port    (GPIO_PORT port, uint8_t val);
+
+void output_pin_APB     (GPIO_PORT port, uint8_t pin, uint8_t val);
+void output_field_APB   (GPIO_PORT port, uint8_t mask, uint8_t val);
+void output_port_APB    (GPIO_PORT port, uint8_t val);
+
+void GPIO_Interrupt_Init();
+
+#endif 

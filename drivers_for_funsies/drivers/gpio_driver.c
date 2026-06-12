@@ -65,7 +65,7 @@ GPIO_init(GPIO_PORT port, PORT_TYPE type, uint8_t pin, PIN_DIR direction){
                     gpio_port = GPIO_PORTFH_BASE_ADDR;
                     break;
             }
-            break;
+        break;
     }
 
     gpio_port->DEN |= (1U << pin);
@@ -86,6 +86,10 @@ GPIO_init(GPIO_PORT port, PORT_TYPE type, uint8_t pin, PIN_DIR direction){
     }
 
     return;
+}
+
+void output_pin(GPIO_PORT port, uint8_t pin, uint8_t val){
+    
 }
 
 

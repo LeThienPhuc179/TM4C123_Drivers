@@ -45,7 +45,9 @@ typedef enum {
 
 typedef enum {
     INPUT,
-    OUTPUT
+    OUTPUT,
+    INPUT_PULLUP,
+    INPUT_PULLDOWN
 }PIN_DIR;
 
 typedef struct {
@@ -79,6 +81,7 @@ typedef struct {
 
 
 void GPIO_Init(GPIO_PORT port, PORT_TYPE type, uint8_t pin, PIN_DIR direction);
+void GPIO_Interrupt_Init();
 void adv_GPIO_init();
 
 #endif /* DRIVERS_GPIO_DRIVER_H_ */

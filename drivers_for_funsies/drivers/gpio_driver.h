@@ -14,6 +14,7 @@
 
 #define SYS_CONTROL_BASE_ADDR   0x400FE000
 #define RCGCGPIO                0x608
+#define PRGPIO                  0xA08
 
 #define GPIO_PORTAP_BASE_ADDR   0x40004000
 #define GPIO_PORTAH_BASE_ADDR   0x40058000
@@ -27,6 +28,25 @@
 #define GPIO_PORTEH_BASE_ADDR   0x4005C000
 #define GPIO_PORTFP_BASE_ADDR   0x40025000
 #define GPIO_PORTFH_BASE_ADDR   0x4005D000
+
+typedef enum {
+    APB,
+    AHB
+} PORT_TYPE;
+
+typedef enum {
+    PORT_A = 0,
+    PORT_B = 1,
+    PORT_C = 2,
+    PORT_D = 3,
+    PORT_E = 4,
+    PORT_F = 5
+} GPIO_PORT;
+
+typedef enum {
+    INPUT,
+    OUTPUT
+}PIN_DIR;
 
 typedef struct {
     volatile uint32_t DR[256];  //0x000 to 0x3FC
@@ -58,6 +78,7 @@ typedef struct {
 
 
 
-void GPIO_Init();
+void GPIO_Init(GPIO_PORT port, PORT_TYPE type, uint8_t pin, PIN_DIR direction);
+void adv_GPIO_init();
 
 #endif /* DRIVERS_GPIO_DRIVER_H_ */

@@ -111,18 +111,19 @@ uint8_t read_pin_APB    (GPIO_PORT port, uint8_t pin);
 uint8_t read_field_APB  (GPIO_PORT port, uint8_t mask);
 uint8_t read_port_APB   (GPIO_PORT port);  
 
+
 //DEFAULT AHB PORTS
+
 //  output_pin: output 0 if val is 0, 1 if otherwise
 void output_pin     (GPIO_PORT port, uint8_t pin, uint8_t val);
-
 //output_field: mask to pick which pins being affected, 
 //                 output 0 if val is 0, 1 if otherwise
 void output_field   (GPIO_PORT port, uint8_t mask, uint8_t val);
-
 //output_port: for funsies, no one will ever use this
 //            This is prolly the most useless function of them all
 void output_port    (GPIO_PORT port, uint8_t val);
 
+//APB PORTS BECAUSE WHY NOT
 void output_pin_APB     (GPIO_PORT port, uint8_t pin, uint8_t val);
 void output_field_APB   (GPIO_PORT port, uint8_t mask, uint8_t val);
 void output_port_APB    (GPIO_PORT port, uint8_t val);

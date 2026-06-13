@@ -11,6 +11,12 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#define CORE_PERIPH_BASE_ADDR   0xE000E000
+#define EN0                     0x100
+#define EN1                     0x104
+#define EN2                     0x108
+#define EN3                     0x10C
+
 
 #define SYS_CONTROL_BASE_ADDR   0x400FE000
 #define RCGCGPIO                0x608
@@ -29,24 +35,6 @@
 #define GPIO_PORTFP_BASE_ADDR   0x40025000
 #define GPIO_PORTFH_BASE_ADDR   0x4005D000
 
-static GPIO_TypeDef* const APB_TABLE[] = {
-    [PORT_A] = GPIO_PORTAP_BASE_ADDR,
-    [PORT_B] = GPIO_PORTBP_BASE_ADDR,
-    [PORT_C] = GPIO_PORTCP_BASE_ADDR,
-    [PORT_D] = GPIO_PORTDP_BASE_ADDR,
-    [PORT_E] = GPIO_PORTEP_BASE_ADDR,
-    [PORT_F] = GPIO_PORTFP_BASE_ADDR,
-};
-
-
-static GPIO_TypeDef* const AHB_TABLE[] = {
-    [PORT_A] = GPIO_PORTAH_BASE_ADDR,
-    [PORT_B] = GPIO_PORTBH_BASE_ADDR,
-    [PORT_C] = GPIO_PORTCH_BASE_ADDR,
-    [PORT_D] = GPIO_PORTDH_BASE_ADDR,
-    [PORT_E] = GPIO_PORTEH_BASE_ADDR,
-    [PORT_F] = GPIO_PORTFH_BASE_ADDR,
-};
 
 static inline GPIO_TypeDef* GET_GPIO_BASE(PORT_TYPE type, GPIO_PORT port);
 
@@ -100,6 +88,7 @@ typedef struct {
 } GPIO_TypeDef;
 
 void GPIO_Init(GPIO_PORT port, PORT_TYPE type, uint8_t pin, PIN_DIR direction);
+void GPIO_Interrupt_Init(GPIO_PORT port);
 
 // DEFAULT AHB PORTS
 uint8_t read_pin    (GPIO_PORT port, uint8_t pin);
@@ -127,7 +116,5 @@ void output_port    (GPIO_PORT port, uint8_t val);
 void output_pin_APB     (GPIO_PORT port, uint8_t pin, uint8_t val);
 void output_field_APB   (GPIO_PORT port, uint8_t mask, uint8_t val);
 void output_port_APB    (GPIO_PORT port, uint8_t val);
-
-void GPIO_Interrupt_Init();
 
 #endif

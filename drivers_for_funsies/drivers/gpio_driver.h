@@ -88,7 +88,19 @@ typedef struct {
 } GPIO_TypeDef;
 
 void GPIO_Init(GPIO_PORT port, PORT_TYPE type, uint8_t pin, PIN_DIR direction);
-void GPIO_Interrupt_Init(GPIO_PORT port);
+
+typedef enum {
+    LEVEL,
+    BOTH_EDGE,
+    POS_EDGE,
+    NEG_EDGE
+} INT_ATTR;
+
+
+//INTERRUPT INIT
+//mask for the pins to be enabled as interrupt driven
+void GPIO_Interrupt_Init(GPIO_PORT port, uint8_t mask, INT_ATTR attr);
+
 
 // DEFAULT AHB PORTS
 uint8_t read_pin    (GPIO_PORT port, uint8_t pin);

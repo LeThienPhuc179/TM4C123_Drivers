@@ -70,9 +70,11 @@ GPIO_init(GPIO_PORT port, PORT_TYPE type, uint8_t pin, PIN_DIR direction){
 
 //TODO
 //not finished
-void GPIO_Interrupt_Init(GPIO_PORT port){
+void GPIO_Interrupt_Init(GPIO_PORT port, uint8_t mask, INT_ATTR attr){
     uint32_t port_PR = (*((volatile uint32_t *)(SYS_CONTROL_BASE_ADDR + PRGPIO))) & (1U << port);
     assert(port_PR != 0     && "Check PORT Initialization");
+
+
 }
 
 

@@ -90,7 +90,6 @@ typedef struct {
 void GPIO_Init(GPIO_PORT port, PORT_TYPE type, uint8_t pin, PIN_DIR direction);
 
 typedef enum {
-    LEVEL,
     BOTH_EDGE,
     POS_EDGE,
     NEG_EDGE
@@ -98,22 +97,24 @@ typedef enum {
 
 
 //INTERRUPT INIT
+//
 //mask for the pins to be enabled as interrupt driven
+//Deault to EDGE triggered, no LEVEL trigger
 void GPIO_Interrupt_Init(GPIO_PORT port, uint8_t mask, INT_ATTR attr);
 
 
-// DEFAULT AHB PORTS
+// DEFAULT APB PORTS
 uint8_t read_pin    (GPIO_PORT port, uint8_t pin);
 
 uint8_t read_field  (GPIO_PORT port, uint8_t mask);
 uint8_t read_port   (GPIO_PORT port);
 
-uint8_t read_pin_APB    (GPIO_PORT port, uint8_t pin);
-uint8_t read_field_APB  (GPIO_PORT port, uint8_t mask);
-uint8_t read_port_APB   (GPIO_PORT port);  
+uint8_t read_pin_AHB    (GPIO_PORT port, uint8_t pin);
+uint8_t read_field_AHB  (GPIO_PORT port, uint8_t mask);
+uint8_t read_port_AHB   (GPIO_PORT port);  
 
 
-//DEFAULT AHB PORTS
+//DEFAULT APB PORTS
 
 //  output_pin: output 0 if val is 0, 1 if otherwise
 void output_pin     (GPIO_PORT port, uint8_t pin, uint8_t val);
@@ -124,9 +125,9 @@ void output_field   (GPIO_PORT port, uint8_t mask, uint8_t val);
 //            This is prolly the most useless function of them all
 void output_port    (GPIO_PORT port, uint8_t val);
 
-//APB PORTS BECAUSE WHY NOT
-void output_pin_APB     (GPIO_PORT port, uint8_t pin, uint8_t val);
-void output_field_APB   (GPIO_PORT port, uint8_t mask, uint8_t val);
-void output_port_APB    (GPIO_PORT port, uint8_t val);
+//AHB PORTS BECAUSE WHY NOT
+void output_pin_AHB     (GPIO_PORT port, uint8_t pin, uint8_t val);
+void output_field_AHB   (GPIO_PORT port, uint8_t mask, uint8_t val);
+void output_port_AHB    (GPIO_PORT port, uint8_t val);
 
 #endif
